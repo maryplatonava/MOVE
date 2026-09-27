@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MOVE — always know what should happen next.">
+  <title>MOVE — Spain Digital Nomad Residence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="MOVE home">MOVE</a>
+    <button class="header-arrow" id="headerArrow" aria-label="Go to roadmap">↓</button>
+    <div class="tagline">ALWAYS KNOW WHAT SHOULD HAPPEN NEXT. SO DO YOU.</div>
+  </header>
+
+  <main>
+    <section class="entry-page" id="entryPage">
+      <div class="entry-content">
+        <div class="entry-country">USA</div>
+        <div class="entry-arrow">↓</div>
+        <div class="spain-flag" aria-label="Spain">🇪🇸</div>
+        <div class="entry-arrow">↓</div>
+        <div class="entry-route">Digital Nomad Residence</div>
+        <button class="move-button" id="moveButton">MOVE</button>
+      </div>
+    </section>
+
+    <section class="roadmap-page" id="roadmapPage">
+      <div class="route-selector" aria-label="Current route">
+        <span>USA</span>
+        <span class="route-selector-arrow">→</span>
+        <span>🇪🇸 Spain</span>
+      </div>
+
+      <div class="roadmap-viewport">
+        <div class="roadmap" id="roadmap">
+          <article class="stage active" data-stage="0">
+            <button class="stage-circle">Prepare<span class="stage-dot"></span></button>
+            <div class="stage-details">
+              <div class="checklist">
+                <div>Passport</div>
+                <span>↓</span>
+                <div>Criminal record certificate</div>
+                <span>↓</span>
+                <div>Apostille</div>
+                <span>↓</span>
+                <div>Official translation</div>
+                <span class="muted">↓</span>
+                <div class="ellipsis">...</div>
+              </div>
+              <form class="document-form" id="documentForm">
+                <label for="email">GET THE FULL LIST OF DOCUMENTS</label>
+                <input id="email" name="email" type="email" placeholder="Your email" autocomplete="email" required>
+                <button type="submit">GET THE LIST</button>
+                <p class="form-message" id="formMessage" aria-live="polite"></p>
+              </form>
+            </div>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="1">
+            <button class="stage-circle">Submit<br>documents<span class="stage-dot"></span></button>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="2">
+            <button class="stage-circle">Application<br>processing<span class="stage-dot"></span></button>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="3">
+            <button class="stage-circle">Get your<br>residence<br>card<span class="stage-dot"></span></button>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="4">
+            <button class="stage-circle">Set up your<br>life in Spain<span class="stage-dot"></span></button>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="5">
+            <button class="stage-circle">Work &amp;<br>taxes<span class="stage-dot"></span></button>
+          </article>
+
+          <div class="stage-connector" aria-hidden="true">→</div>
+
+          <article class="stage" data-stage="6">
+            <button class="stage-circle">Maintain &amp;<br>renew<span class="stage-dot"></span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2026 MOVE.</div>
+    <nav>
+      <a href="#" aria-label="LinkedIn">in&nbsp; LinkedIn</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

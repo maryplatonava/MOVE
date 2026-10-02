@@ -453,3 +453,119 @@ button, input {
     justify-content: flex-start;
   }
 }
+/* =========================================
+   MOVE ROADMAP — INTERACTIVE STATES
+========================================= */
+
+.stage.completed .stage-circle {
+  background: var(--light);
+  color: #5f708d;
+  border: 3px solid var(--red);
+  box-shadow: none;
+}
+
+.stage.active .stage-circle {
+  background: var(--blue);
+  color: #fff;
+  border: 0;
+  box-shadow: 0 7px 12px rgba(35, 62, 151, .13);
+}
+
+.stage:not(.active):not(.completed) .stage-circle {
+  background: var(--light);
+  color: #5f708d;
+  border: 0;
+  box-shadow: none;
+}
+
+
+/* CONNECTORS */
+
+.stage-connector {
+  color: #c2cbd8;
+  transition: color .2s ease;
+}
+
+.stage.completed + .stage-connector {
+  color: var(--red);
+}
+
+
+/* DESKTOP ROADMAP SCALE */
+
+@media (min-width: 901px) {
+
+  .roadmap-viewport {
+    overflow-x: hidden;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .roadmap {
+    min-width: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .stage {
+    width: 190px;
+  }
+
+  .stage-circle {
+    width: 138px;
+    height: 138px;
+    font-size: 16px;
+  }
+
+  .stage-connector {
+    flex: 1 1 auto;
+    min-width: 24px;
+    max-width: 70px;
+    font-size: 34px;
+  }
+
+  .stage-details {
+    width: 280px;
+    margin-left: -45px;
+  }
+}
+
+
+/* SECOND PAGE POSITION */
+
+@media (min-width: 901px) {
+
+  .roadmap-page {
+    padding-top: 18px;
+  }
+
+  .route-selector {
+    top: 18px;
+  }
+
+  .roadmap-viewport {
+    padding-top: 0;
+  }
+
+  .roadmap {
+    padding-top: 8px;
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+  .stage.completed .stage-circle {
+    border-width: 3px;
+  }
+
+  .stage-connector {
+    transition: color .2s ease;
+  }
+
+  .stage.completed + .stage-connector {
+    color: var(--red);
+  }
+}

@@ -1,165 +1,170 @@
-const entryPage = document.getElementById("entryPage");
-const roadmapPage = document.getElementById("roadmapPage");
-const moveButton = document.getElementById("moveButton");
-const headerArrow = document.getElementById("headerArrow");
+document.addEventListener("DOMContentLoaded", function () {
 
-const stages = [...document.querySelectorAll(".stage")];
+  const entryPage = document.getElementById("entryPage");
+  const roadmapPage = document.getElementById("roadmapPage");
+  const moveButton = document.getElementById("moveButton");
+  const headerArrow = document.getElementById("headerArrow");
 
-const form = document.getElementById("documentForm");
-const formMessage = document.getElementById("formMessage");
+  const stages = Array.from(document.querySelectorAll(".stage"));
+
+  const form = document.getElementById("documentForm");
+  const formMessage = document.getElementById("formMessage");
 
 
-/* =========================
-   OPEN ROADMAP
-========================= */
+  /* ==============================
+     OPEN ROADMAP
+  ============================== */
 
-function showRoadmap() {
-  if (entryPage) {
-    entryPage.style.display = "none";
+  function showRoadmap() {
+
+    if (entryPage) {
+      entryPage.style.display = "none";
+    }
+
+    if (roadmapPage) {
+      roadmapPage.classList.add("visible");
+    }
+
+    document.body.classList.add("roadmap-active");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
-  if (roadmapPage) {
-    roadmapPage.classList.add("visible");
+
+  if (moveButton) {
+    moveButton.addEventListener("click", showRoadmap);
   }
 
-  document.body.classList.add("roadmap-active");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+  if (headerArrow) {
+    headerArrow.addEventListener("click", showRoadmap);
+  }
 
 
-if (moveButton) {
-  moveButton.addEventListener("click", showRoadmap);
-}
+  /* ==============================
+     ROADMAP STATES
+  ============================== */
 
-if (headerArrow) {
-  headerArrow.addEventListener("click", showRoadmap);
-}
+  function setStage(selectedIndex) {
+
+    stages.forEach(function (stage, index) {
+
+      const circle = stage.querySelector(".stage-circle");
+      const details = stage.querySelector(".stage-details");
+
+      /* CURRENT */
+      if (index === selectedIndex) {
+
+        stage.classList.add("active");
+        stage.classList.remove("completed");
+
+        if (circle) {
+          circle.setAttribute("aria-current", "step");
+        }
+
+      }
+
+      /* COMPLETED */
+      else if (index < selectedIndex) {
+
+        stage.classList.remove("active");
+        stage.classList.add("completed");
+
+        if (circle) {
+          circle.removeAttribute("aria-current");
+        }
+
+      }
+
+      /* UPCOMING */
+      else {
+
+        stage.classList.remove("active");
+        stage.classList.remove("completed");
+
+        if (circle) {
+          circle.removeAttribute("aria-current");
+        }
+
+      }
 
 
-/* =========================
-   ROADMAP
-========================= */
+      /* CONTENT */
 
-function updateRoadmap(selectedIndex) {
+      if (details) {
 
-  stages.forEach((stage, index) => {
+        if (index === selectedIndex) {
+          details.style.display = "";
+        } else {
+          details.style.display = "none";
+        }
+
+      }
+
+    });
+
+  }
+
+
+  /* ==============================
+     CLICKABLE STAGES
+  ============================== */
+
+  stages.forEach(function (stage, index) {
 
     const circle = stage.querySelector(".stage-circle");
 
-    /* CURRENT */
-    if (index === selectedIndex) {
+    if (!circle) return;
 
-      stage.classList.add("active");
-      stage.classList.remove("completed");
+    circle.addEventListener("click", function (event) {
 
-      if (circle) {
-        circle.setAttribute("aria-current", "step");
-      }
-    }
+      event.preventDefault();
 
-    /* COMPLETED */
-    else if (index < selectedIndex) {
+      setStage(index);
 
-      stage.classList.remove("active");
-      stage.classList.add("completed");
-
-      if (circle) {
-        circle.removeAttribute("aria-current");
-      }
-    }
-
-    /* UPCOMING */
-    else {
-
-      stage.classList.remove("active");
-      stage.classList.remove("completed");
-
-      if (circle) {
-        circle.removeAttribute("aria-current");
-      }
-    }
-
-
-    /* SHOW / HIDE CONTENT */
-
-    const details = stage.querySelector(".stage-details");
-
-    if (details) {
-
-      if (index === selectedIndex) {
-        details.style.display = "";
-      } else {
-        details.style.display = "none";
-      }
-
-    }
+    });
 
   });
 
-}
+
+  /* ==============================
+     START WITH PREPARE
+  ============================== */
+
+  if (stages.length > 0) {
+    setStage(0);
+  }
 
 
-/* =========================
-   CLICK ON STAGE
-========================= */
+  /* ==============================
+     DOCUMENT FORM
+  ============================== */
 
-stages.forEach((stage, index) => {
+  if (form) {
 
-  const circle = stage.querySelector(".stage-circle");
+    form.addEventListener("submit", function (event) {
 
-  if (!circle) return;
+      event.preventDefault();
 
-  circle.addEventListener("click", () => {
+      const emailInput = document.getElementById("email");
 
-    updateRoadmap(index);
+      if (!emailInput) return;
 
-  });
+      const email = emailInput.value.trim();
+
+      if (!email) return;
+
+      if (formMessage) {
+        formMessage.textContent =
+          "Check your email — your document list is on its way.";
+      }
+
+      form.reset();
+
+    });
+
+  }
 
 });
-
-
-/* =========================
-   INITIAL STATE
-========================= */
-
-if (stages.length > 0) {
-
-  updateRoadmap(0);
-
-}
-
-
-/* =========================
-   DOCUMENT FORM
-========================= */
-
-if (form) {
-
-  form.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    const emailInput = document.getElementById("email");
-
-    if (!emailInput) return;
-
-    const email = emailInput.value.trim();
-
-    if (!email) return;
-
-    if (formMessage) {
-
-      formMessage.textContent =
-        "Check your email — your document list is on its way.";
-
-    }
-
-    form.reset();
-
-  });
-
-}

@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("documentForm");
   const formMessage = document.getElementById("formMessage");
 
+  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6FYQ_IK6whbI-ysm3-pSvasJDZmdQZNExO-HD_EtykDttoyclqMIQDszz6ZgP7ONxlA/exec";
+
 
   /* ==============================
      OPEN ROADMAP
@@ -139,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ==============================
-     DOCUMENT FORM
+     DOCUMENT FORM WITH GOOGLE SHEETS
   ============================== */
 
   if (form) {
@@ -154,14 +156,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const email = emailInput.value.trim();
 
-      if (!email) return;
-
-      if (formMessage) {
-        formMessage.textContent =
-          "Check your email — your document list is on its way.";
+      if (!email) {
+        if (formMessage) {
+          formMessage.textContent = "Please enter a valid email.";
+          formMessage.style.color = "#d1483d";
+        }
+        return;
       }
 
-      form.reset();
+      // Отправляем эмейл на Google Apps Script
+      fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({
+          email: email,
+          timestamp: new Date().toISOString()
+        })
+      })
+      .then(() => {
+        if (formMessage) {
+          formMessage.textContent = "✓ Check your email — your document list is on its way.";
+          formMessage.style.color = "#2f5fbb";
+        }
+        form.reset();
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        if (formMessage) {
+          formMessage.textContent = "Connection error. Please try again.";
+          formMessage.style.color = "#d1483d";
+        }
+      });
 
     });
 

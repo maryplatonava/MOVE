@@ -1,10 +1,13 @@
 :root {
-  --red: #c83b30;
-  --blue: #2849ad;
-  --navy: #171b2b;
-  --muted: #9ca8bd;
-  --light: #eef2f8;
-  --line: #e8ebf0;
+  --red: #d1453d;
+  --red-dark: #c43d36;
+  --blue: #1f4eb8;
+  --blue-deep: #1a3d8f;
+  --navy: #1b1f2a;
+  --muted: #a7b0bf;
+  --line: #dfe5ec;
+  --panel: #edf2f8;
+  --bg: #f5f5f3;
   --white: #ffffff;
 }
 
@@ -17,7 +20,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--white);
+  background: var(--bg);
   color: var(--navy);
   font-family: "Inter", sans-serif;
   font-size: 16px;
@@ -33,109 +36,126 @@ button, input {
   border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 42px;
   position: relative;
   z-index: 10;
-  background: rgba(255,255,255,.98);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .wordmark {
   color: var(--red);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 29px;
+  font-size: 32px;
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: 0.15em;
   text-decoration: none;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wordmark::after {
+  content: "↓";
+  font-size: 18px;
+  color: var(--blue);
+  display: inline-block;
+  transform: translateY(-2px);
 }
 
 .header-arrow {
   border: 0;
   background: transparent;
   color: var(--blue);
-  font-size: 32px;
+  font-size: 30px;
   line-height: 1;
-  padding: 0 0 5px 18px;
+  padding: 0 0 0 10px;
   cursor: pointer;
 }
 
 .tagline {
-  color: #aab4c5;
+  color: #9aa7b8;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 17px;
-  letter-spacing: .08em;
+  font-size: 15px;
+  letter-spacing: 0.12em;
   margin-left: 18px;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 
 .entry-page {
-  min-height: calc(100vh - 112px - 91px);
+  min-height: calc(100vh - 112px - 90px);
   display: grid;
   place-items: center;
+  background: var(--bg);
 }
 
 .entry-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 }
 
 .entry-country,
 .entry-route {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 500;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
+  color: var(--navy);
 }
 
 .entry-country {
-  font-size: 21px;
+  font-size: 24px;
+  line-height: 1.2;
 }
 
 .entry-route {
-  margin-top: 5px;
-  font-size: 22px;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1.2;
 }
 
 .entry-arrow {
-  color: #c8d0dd;
-  font-size: 24px;
+  color: #c8cedb;
+  font-size: 28px;
   line-height: 1;
-  margin: 20px 0;
+  margin: 18px 0;
 }
 
 .spain-flag {
-  font-size: 29px;
+  font-size: 34px;
   line-height: 1;
 }
 
 .move-button {
-  margin-top: 64px;
-  width: 255px;
-  height: 85px;
+  margin-top: 58px;
+  width: 300px;
+  height: 86px;
   border: 0;
-  border-radius: 48px;
-  background: var(--red);
-  color: white;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  color: var(--white);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 23px;
-  font-weight: 500;
-  letter-spacing: .24em;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   cursor: pointer;
-  box-shadow: 0 5px 8px rgba(0,0,0,.08);
-  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 7px 12px rgba(161, 54, 48, 0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .move-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 14px rgba(0,0,0,.10);
+  transform: translateY(-1px);
+  box-shadow: 0 9px 16px rgba(161, 54, 48, 0.22);
 }
 
 .roadmap-page {
   display: none;
-  min-height: calc(100vh - 112px - 91px);
+  min-height: calc(100vh - 112px - 90px);
   position: relative;
-  padding: 40px 0 30px;
+  padding: 30px 0 18px;
+  background: var(--bg);
 }
 
 .roadmap-page.visible {
@@ -144,26 +164,26 @@ button, input {
 
 .route-selector {
   position: absolute;
-  top: 30px;
-  right: 50px;
+  top: 26px;
+  right: 48px;
   display: flex;
   gap: 10px;
   align-items: center;
-  color: #7d8ba4;
+  color: #7e8aa0;
   font-family: "Space Grotesk", sans-serif;
   font-size: 14px;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
 }
 
 .route-selector-arrow {
-  color: #c4ccd8;
+  color: #bfc8d8;
 }
 
 .roadmap-viewport {
   width: 100%;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 10px 50px 35px;
+  padding: 10px 50px 30px;
   scrollbar-width: thin;
 }
 
@@ -183,24 +203,25 @@ button, input {
 
 .stage-circle {
   position: relative;
-  width: 155px;
-  height: 155px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 0;
-  background: var(--light);
+  background: var(--panel);
   color: #5f708d;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 17px;
-  line-height: 1.22;
+  font-size: 18px;
+  line-height: 1.24;
   font-weight: 500;
   cursor: pointer;
   padding: 20px;
+  box-shadow: inset 0 0 0 1px rgba(142, 154, 175, 0.04);
 }
 
 .stage.active .stage-circle {
   background: var(--blue);
   color: #fff;
-  box-shadow: 0 7px 12px rgba(35,62,151,.13);
+  box-shadow: 0 8px 16px rgba(31, 78, 184, 0.15);
 }
 
 .stage-dot {
@@ -208,21 +229,21 @@ button, input {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #c4cddc;
-  bottom: 16px;
+  background: #c2cad8;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .stage.active .stage-dot {
-  background: #a8b8e8;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .stage-connector {
   flex: 0 0 72px;
-  margin-top: 62px;
+  margin-top: 58px;
   color: #c2cbd8;
-  font-size: 39px;
+  font-size: 40px;
   line-height: 1;
   text-align: center;
 }
@@ -238,54 +259,52 @@ button, input {
   font-family: "Space Grotesk", sans-serif;
   font-size: 18px;
   font-weight: 500;
-  line-height: 1.45;
+  line-height: 1.5;
+  color: var(--navy);
 }
 
 .checklist span {
   display: block;
   color: var(--blue);
-  font-size: 23px;
+  font-size: 22px;
   line-height: 1;
-  margin: 6px 0;
-}
-
-.checklist span.muted {
-  color: #cbd3df;
+  margin: 7px 0;
 }
 
 .checklist .ellipsis {
-  color: #aeb9ca;
+  color: #adbacd;
   font-size: 20px;
 }
 
 .document-form {
-  margin-top: 48px;
+  margin-top: 40px;
   text-align: left;
 }
 
 .document-form label {
   display: block;
-  color: #65738c;
+  color: #6a7a90;
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: .04em;
+  letter-spacing: 0.08em;
   margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 .document-form input {
   width: 100%;
   height: 52px;
-  border: 1px solid #d6dce6;
-  border-radius: 0;
+  border: 1px solid #d5dce6;
+  border-radius: 8px;
   outline: none;
-  padding: 0 17px;
+  padding: 0 16px;
   color: var(--navy);
-  background: #fff;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .document-form input::placeholder {
-  color: #aeb7c7;
+  color: #a9b5c7;
 }
 
 .document-form input:focus {
@@ -297,13 +316,13 @@ button, input {
   height: 52px;
   margin-top: 12px;
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--blue);
   color: white;
   font-family: "Inter", sans-serif;
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: .04em;
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
 
@@ -315,26 +334,28 @@ button, input {
 }
 
 .site-footer {
-  min-height: 91px;
+  min-height: 92px;
   border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
-  color: #bdc6d3;
+  padding: 0 42px;
+  color: #b1bdce;
   font-family: "Inter", sans-serif;
   font-size: 16px;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .site-footer nav {
   display: flex;
   align-items: center;
-  gap: 39px;
+  gap: 38px;
 }
 
 .site-footer a {
-  color: #98a5b9;
+  color: #8b9aaa;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .site-footer a:hover {
@@ -348,12 +369,12 @@ button, input {
   }
 
   .wordmark {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .header-arrow {
     font-size: 28px;
-    padding-left: 12px;
+    padding-left: 8px;
   }
 
   .tagline {
@@ -366,12 +387,12 @@ button, input {
   }
 
   .entry-country { font-size: 20px; }
-  .entry-route { font-size: 20px; text-align: center; }
+  .entry-route { font-size: 22px; text-align: center; }
   .move-button {
     width: 220px;
     height: 72px;
     margin-top: 52px;
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .route-selector {
@@ -453,12 +474,9 @@ button, input {
     justify-content: flex-start;
   }
 }
-/* =========================================
-   MOVE ROADMAP — INTERACTIVE STATES
-========================================= */
 
 .stage.completed .stage-circle {
-  background: var(--light);
+  background: var(--panel);
   color: #5f708d;
   border: 3px solid var(--red);
   box-shadow: none;
@@ -468,33 +486,26 @@ button, input {
   background: var(--blue);
   color: #fff;
   border: 0;
-  box-shadow: 0 7px 12px rgba(35, 62, 151, .13);
+  box-shadow: 0 8px 16px rgba(31, 78, 184, 0.15);
 }
 
 .stage:not(.active):not(.completed) .stage-circle {
-  background: var(--light);
+  background: var(--panel);
   color: #5f708d;
   border: 0;
   box-shadow: none;
 }
 
-
-/* CONNECTORS */
-
 .stage-connector {
   color: #c2cbd8;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
 .stage.completed + .stage-connector {
   color: var(--red);
 }
 
-
-/* DESKTOP ROADMAP SCALE */
-
 @media (min-width: 901px) {
-
   .roadmap-viewport {
     overflow-x: hidden;
     padding-left: 32px;
@@ -530,11 +541,7 @@ button, input {
   }
 }
 
-
-/* SECOND PAGE POSITION */
-
 @media (min-width: 901px) {
-
   .roadmap-page {
     padding-top: 18px;
   }
@@ -552,17 +559,13 @@ button, input {
   }
 }
 
-
-/* MOBILE */
-
 @media (max-width: 900px) {
-
   .stage.completed .stage-circle {
     border-width: 3px;
   }
 
   .stage-connector {
-    transition: color .2s ease;
+    transition: color 0.2s ease;
   }
 
   .stage.completed + .stage-connector {

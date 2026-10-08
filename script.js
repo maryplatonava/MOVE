@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("documentForm");
   const formMessage = document.getElementById("formMessage");
 
-  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6FYQ_IK6whbI-ysm3-pSvasJDZmdQZNExO-HD_EtykDttoyclqMIQDszz6ZgP7ONxlA/exec";
+  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxe_7zKDQvhdomCP9f616caD2gtFkWMgMyHNpKpUcjjNsDICwm330_aqIQSWRTRAxt3hw/exec";
 
 
   /* ==============================
@@ -164,6 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      if (formMessage) {
+        formMessage.textContent = "Sending...";
+        formMessage.style.color = "#2f5fbb";
+      }
+
       // Отправляем эмейл на Google Apps Script
       fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
@@ -174,11 +179,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
       })
       .then(() => {
-        if (formMessage) {
-          formMessage.textContent = "✓ Check your email — your document list is on its way.";
-          formMessage.style.color = "#2f5fbb";
-        }
-        form.reset();
+        setTimeout(() => {
+          window.location.href = "success.html";
+        }, 500);
       })
       .catch(error => {
         console.error("Error:", error);

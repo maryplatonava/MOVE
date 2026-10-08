@@ -1,22 +1,19 @@
 :root {
   --bg: #f4f4f3;
-  --panel: #edf1f7;
-  --line: #dde3eb;
-  --navy: #1c2433;
+  --panel: #eef1f6;
+  --line: #dfe3ea;
+  --navy: #1d2434;
   --muted: #9aa7b8;
-  --blue: #2d5da9;
+  --blue: #2f5fbb;
   --red: #d14a40;
   --red-deep: #bf4137;
   --white: #ffffff;
+  --soft-gray: #d8dee8;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -98,7 +95,6 @@ button, input {
 .entry-country {
   font-size: 18px;
   line-height: 1.2;
-  margin-bottom: 0;
 }
 
 .entry-arrow {
@@ -146,6 +142,198 @@ button, input {
 
 .roadmap-page {
   display: none;
+  min-height: calc(100vh - 76px - 88px);
+  background: var(--bg);
+  padding: 8px 0 0;
+}
+
+.roadmap-page.visible {
+  display: block;
+}
+
+.route-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 0 0 8px;
+  color: var(--navy);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  margin: 4px 0 18px 0;
+}
+
+.route-selector-arrow {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.roadmap-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 18px 12px;
+}
+
+.roadmap {
+  min-width: 1100px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  justify-content: flex-start;
+  padding-top: 8px;
+}
+
+.stage {
+  flex: 0 0 auto;
+  width: 180px;
+  text-align: center;
+}
+
+.stage-circle {
+  position: relative;
+  width: 118px;
+  height: 118px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  color: #65748a;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px rgba(169,177,188,0.2);
+}
+
+.stage.active .stage-circle {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 10px 18px rgba(47, 95, 187, 0.18);
+}
+
+.stage.completed .stage-circle {
+  background: rgba(255, 255, 255, 0.38);
+  color: #5d6d81;
+  box-shadow: inset 0 0 0 2px rgba(204, 71, 57, 0.28);
+}
+
+.stage-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(120, 129, 138, 0.7);
+}
+
+.stage.active .stage-dot {
+  background: rgba(255,255,255,0.86);
+}
+
+.stage-connector {
+  flex: 0 0 72px;
+  margin-top: 46px;
+  color: #c7ced9;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+}
+
+.stage-details {
+  width: 260px;
+  margin-top: 20px;
+  margin-left: -26px;
+  text-align: left;
+}
+
+.checklist {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.checklist div {
+  margin: 0;
+}
+
+.checklist span {
+  display: block;
+  color: #9ba9be;
+  font-size: 18px;
+  line-height: 1;
+  margin: 6px 0 5px;
+}
+
+.checklist .ellipsis {
+  color: #afb7c4;
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.document-form {
+  margin-top: 24px;
+  text-align: left;
+}
+
+.document-form label {
+  display: block;
+  color: #6a7a90;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.document-form input {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #d5dce6;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.35);
+  padding: 0 12px;
+  color: var(--navy);
+  outline: none;
+}
+
+.document-form input::placeholder {
+  color: #a5b0c0;
+}
+
+.document-form input:focus {
+  border-color: var(--blue);
+}
+
+.document-form button {
+  width: 100%;
+  height: 42px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-message {
+  min-height: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 12px 0 0;
 }
 
 .site-footer {
@@ -278,6 +466,23 @@ button, input {
     height: 68px;
     font-size: 17px;
     letter-spacing: 0.18em;
+  }
+
+  .roadmap-page {
+    min-height: calc(100vh - 70px - 90px);
+  }
+
+  .route-selector {
+    padding-left: 12px;
+    margin-bottom: 12px;
+  }
+
+  .roadmap-viewport {
+    padding: 0 12px 12px;
+  }
+
+  .roadmap {
+    min-width: 900px;
   }
 
   .site-footer {
